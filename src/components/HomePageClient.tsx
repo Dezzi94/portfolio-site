@@ -554,7 +554,11 @@ export function HomePageClient() {
                     'Cross-timezone/async',
                     'Systems thinking',
                     'Prioritisation & focus',
-                    'Test-and-learn mindset'
+                    'Test-and-learn mindset',
+                    'Structured problem solving',
+                    'Clear written storytelling',
+                    'Experiment design & QA',
+                    'Growth mindset'
                   ].map((skill) => (
                     <div key={skill} className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-brand-secondary"></span>
@@ -572,13 +576,17 @@ export function HomePageClient() {
                 <div className="grid grid-cols-2 gap-3 text-sm text-foreground/80">
                   {[
                     'Make / Zapier (automation)',
-                    'HubSpot / Klaviyo (CRM/ESP)',
+                    'HubSpot / Klaviyo / Salesforce',
                     'GA4 / Looker Studio (analytics)',
                     'Amplitude / Hotjar (behavior)',
                     'Meta / LinkedIn / Google Ads',
                     'Webflow / WordPress (web)',
                     'Figma (UX/UI)',
-                    'Airtable / Notion (ops)'
+                    'Airtable / Notion (ops)',
+                    'Email/SMS: Klaviyo & lifecycle',
+                    'CRO: A/B testing & QA',
+                    'Attribution & pixels',
+                    'AI co-pilots: QA, reporting'
                   ].map((tool) => (
                     <div key={tool} className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-brand-primary"></span>
