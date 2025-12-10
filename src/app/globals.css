@@ -1,26 +1,148 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light mode variables */
+  --color-background: #f9f9f9; /* Soft off-white for light mode (not clinical) */
+  --color-foreground: #0f172a; /* Slate for body copy */
+  --color-card: #ffffff;
+  --color-border: #e2e8f0;
+  
+  /* Brand accent colors - NEW PURPLE BRANDING */
+  --color-brand-primary: #c084fc; /* Soft futuristic purple (emphasis & CTA hover) */
+  --color-brand-secondary: #a855f7; /* Rich purple for gradients, buttons, borders */
+  --color-brand-hover: #c084fc; /* Using primary for hover effects */
+  
+  /* Additional brand colors for component compatibility */
+  --color-brand-teal: #14b8a6; /* Teal accent for variety */
+  --color-brand-purple: #a855f7; /* Maps to secondary for consistency */
+  
+  /* Spacing for consistent layouts */
+  --spacing-section: 4rem; /* py-16 */
+  --spacing-gap: 2rem; /* gap-8 */
+  
+  /* Animation timing */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+[data-theme="dark"] {
+  /* Dark mode variables */
+  --color-background: #0b0b0f; /* Deep near-black background (default) */
+  --color-foreground: #f3f4f6; /* Off-white text */
+  --color-card: #1a1a1f; /* Slightly lighter than background */
+  --color-border: #2a2a2f; /* Subtle border in dark mode */
+  
+  /* Brand colors available in dark mode */
+  --color-brand-primary: #c084fc; /* Soft futuristic purple (emphasis & CTA hover) */
+  --color-brand-secondary: #a855f7; /* Rich purple for gradients, buttons, borders */
+  --color-brand-hover: #c084fc; /* Using primary for hover effects */
+  --color-brand-teal: #14b8a6; /* Teal accent for variety */
+  --color-brand-purple: #a855f7; /* Maps to secondary for consistency */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global styles */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  transition: background-color var(--duration-normal) ease, color var(--duration-normal) ease;
+}
+
+/* Headings use Space Grotesk */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-secondary);
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+@layer utilities {
+  /* Custom utility classes */
+  .gradient-text {
+    background: linear-gradient(to right, #c084fc, #a855f7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  [data-theme="dark"] .glass-effect {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .py-section {
+    @apply py-16;
+  }
+  
+  .duration-normal {
+    transition-duration: var(--duration-normal);
+  }
+  
+  .duration-fast {
+    transition-duration: var(--duration-fast);
+  }
+  
+  .duration-slow {
+    transition-duration: var(--duration-slow);
+  }
+
+  /* 3D Flip Card Animations */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-style-preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
 }

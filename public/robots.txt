@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://desmonddigital.com/sitemap.xml
+
+# Block unnecessary crawling
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow specific important files
+Allow: /images/
+Allow: /favicon.ico
+Allow: /*.css
+Allow: /*.js 
