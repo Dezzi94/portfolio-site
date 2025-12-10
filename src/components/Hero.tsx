@@ -136,12 +136,13 @@ const FuturisticImage = ({
     <div className={`relative flex flex-col items-center gap-4 ${className}`} style={{ width: size }}>
       {extraHeading && (
         <motion.div
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: -6, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-[11px] font-semibold uppercase tracking-[0.4em] text-brand-secondary text-center"
+          className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-gradient-to-r from-brand-primary/20 to-brand-secondary/20 text-[11px] font-semibold uppercase tracking-[0.3em] text-brand-secondary shadow-sm"
         >
-          {extraHeading}
+          <Sparkles className="h-3 w-3" />
+          <span>{extraHeading}</span>
         </motion.div>
       )}
       <div className="relative" style={{ width: size, height: size }}>
@@ -296,20 +297,11 @@ export function Hero({ extraHeading }: HeroProps) {
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                  <span className="gradient-text">
-                    Futuristic <span className="text-brand-secondary">growth</span>.
+                  <span className="gradient-text block">
+                    Systems. <span className="text-brand-secondary">Strategy.</span>
                   </span>
-                  <br />
-                  <span className="text-foreground">
-                    Powered by systems,{' '}
-                    <motion.span
-                      className="inline-block"
-                      animate={{ rotate: [0, 5, -5, 0] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                    >
-                      AI,
-                    </motion.span>{' '}
-                    and <span className="text-brand-secondary">strategic thinking</span>.
+                  <span className="text-foreground block mt-1">
+                    Scale.
                   </span>
                 </h1>
               </motion.div>
@@ -321,8 +313,7 @@ export function Hero({ extraHeading }: HeroProps) {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="text-lg md:text-xl text-foreground/80 mb-8 leading-relaxed"
               >
-                I'm Jack Desmond — a T-shaped marketer who builds smarter paths to scale. 
-                My brain works differently — that's why my systems work better. Open to roles as a <span className="text-brand-secondary font-semibold">Digital Marketing Executive, Growth Marketer, or Digital Marketing Automation Specialist</span>.
+                I'm Jack Desmond. I build smarter paths to scale. My brain works differently; that's why my systems work better. Open to roles as a <span className="text-brand-secondary font-semibold">Digital Marketing Executive, Growth Marketer, or Digital Marketing Automation Specialist</span>.
               </motion.p>
 
               {/* CTA Buttons - Mobile */}
@@ -394,20 +385,11 @@ export function Hero({ extraHeading }: HeroProps) {
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <h1 className="text-5xl xl:text-7xl font-bold mb-6 leading-tight">
-                  <span className="gradient-text">
-                    Futuristic <span className="text-brand-secondary">growth</span>.
+                  <span className="gradient-text block">
+                    Systems. <span className="text-brand-secondary">Strategy.</span>
                   </span>
-                  <br />
-                  <span className="text-foreground">
-                    Powered by systems,{' '}
-                    <motion.span
-                      className="inline-block"
-                      animate={{ rotate: [0, 5, -5, 0] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                    >
-                      AI,
-                    </motion.span>{' '}
-                    and <span className="text-brand-secondary">strategic thinking</span>.
+                  <span className="text-foreground block mt-1">
+                    Scale.
                   </span>
                 </h1>
               </motion.div>
@@ -419,8 +401,7 @@ export function Hero({ extraHeading }: HeroProps) {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="text-xl xl:text-2xl text-foreground/80 mb-12 leading-relaxed"
               >
-                I'm Jack Desmond — a T-shaped marketer who builds smarter paths to scale. 
-                My brain works differently — that's why my systems work better. Currently targeting opportunities as a <span className="text-brand-secondary font-semibold">Digital Marketing Executive, Growth Marketer, or Marketing Automation Specialist</span>.
+                I'm Jack Desmond. I build smarter paths to scale. My brain works differently; that's why my systems work better. Currently targeting opportunities as a <span className="text-brand-secondary font-semibold">Digital Marketing Executive, Growth Marketer, or Marketing Automation Specialist</span>.
               </motion.p>
 
               {/* CTA Buttons - Desktop */}

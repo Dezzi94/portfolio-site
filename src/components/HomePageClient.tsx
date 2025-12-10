@@ -250,7 +250,17 @@ export function HomePageClient() {
       </nav>
 
       {/* Proof Section */}
-      <section id="proof" className="py-24 bg-background relative">
+      <section id="proof" className="py-24 bg-background relative overflow-hidden">
+        <motion.div 
+          className="absolute -left-24 top-10 w-80 h-80 bg-brand-primary/10 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.25, 0.4, 0.25] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute -right-16 bottom-0 w-72 h-72 bg-brand-secondary/10 rounded-full blur-3xl"
+          animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.35, 0.2] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
         <div className="container mx-auto px-4">
           <motion.div 
             className="max-w-6xl mx-auto"
@@ -357,6 +367,16 @@ export function HomePageClient() {
       {/* How I Work */}
       <section id="process" className="py-24 bg-gradient-to-b from-background to-card/20 relative overflow-hidden">
         {/* Subtle grid pattern */}
+        <motion.div 
+          className="absolute -right-16 top-12 w-80 h-80 bg-brand-secondary/10 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.12, 1], opacity: [0.18, 0.32, 0.18] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute -left-20 bottom-6 w-72 h-72 bg-brand-primary/10 rounded-full blur-3xl"
+          animate={{ scale: [1.05, 0.95, 1.05], opacity: [0.16, 0.28, 0.16] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+        />
         <div className="absolute inset-0 opacity-[0.02]" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }} />
@@ -495,7 +515,17 @@ export function HomePageClient() {
       <div className="h-px bg-gradient-to-r from-transparent via-brand-secondary/30 to-transparent" />
 
       {/* Roles Section */}
-      <section id="roles" className="py-24 bg-background">
+      <section id="roles" className="py-24 bg-background relative overflow-hidden">
+        <motion.div 
+          className="absolute -right-10 top-16 w-72 h-72 bg-brand-secondary/10 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.35, 0.2] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute -left-14 bottom-10 w-80 h-80 bg-brand-primary/10 rounded-full blur-3xl"
+          animate={{ scale: [1.05, 0.92, 1.05], opacity: [0.18, 0.3, 0.18] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        />
         <div className="container mx-auto px-4">
           <motion.div 
             className="max-w-6xl mx-auto"
@@ -603,7 +633,17 @@ export function HomePageClient() {
       <div className="h-px bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent" />
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 bg-gradient-to-b from-card/10 to-background relative">
+      <section id="projects" className="py-24 bg-gradient-to-b from-card/10 to-background relative overflow-hidden">
+        <motion.div 
+          className="absolute -left-24 top-0 w-80 h-80 bg-brand-primary/12 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.32, 0.2] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute -right-20 bottom-6 w-80 h-80 bg-brand-secondary/12 rounded-full blur-3xl"
+          animate={{ scale: [1.08, 0.96, 1.08], opacity: [0.18, 0.3, 0.18] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+        />
         <div className="container mx-auto px-4">
           <motion.div 
             className="max-w-5xl mx-auto"
