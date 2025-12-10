@@ -548,17 +548,17 @@ export function HomePageClient() {
                 <div className="grid grid-cols-2 gap-3 text-sm text-foreground/80">
                   {[
                     'Executive-ready comms',
-                    'Calm under pressure',
+                    'Clear written storytelling',
+                    'Structured problem solving',
+                    'Growth mindset',
+                    'Experiment design & QA',
                     'Stakeholder alignment',
                     'Documentation-first',
-                    'Cross-timezone/async',
-                    'Systems thinking',
                     'Prioritisation & focus',
-                    'Test-and-learn mindset',
-                    'Structured problem solving',
-                    'Clear written storytelling',
-                    'Experiment design & QA',
-                    'Growth mindset'
+                    'Systems thinking',
+                    'Trend spotting & platform updates',
+                    'Community engagement & social listening',
+                    'Organised, multi-client delivery'
                   ].map((skill) => (
                     <div key={skill} className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-brand-secondary"></span>
@@ -576,17 +576,17 @@ export function HomePageClient() {
                 <div className="grid grid-cols-2 gap-3 text-sm text-foreground/80">
                   {[
                     'Make / Zapier (automation)',
-                    'HubSpot / Klaviyo / Salesforce',
-                    'GA4 / Looker Studio (analytics)',
-                    'Amplitude / Hotjar (behavior)',
+                    'HubSpot / GoHighLevel / Klaviyo (CRM/ESP)',
+                    'GA4 / basic SQL-friendly exports',
+                    'Hotjar (behavior)',
                     'Meta / LinkedIn / Google Ads',
-                    'Webflow / WordPress (web)',
-                    'Figma (UX/UI)',
-                    'Airtable / Notion (ops)',
-                    'Email/SMS: Klaviyo & lifecycle',
+                    'Social: IG / TikTok / YouTube / FB / X (publishing & analytics)',
+                    'Webflow / WordPress / Squarespace',
+                    'Figma / Canva (creative & UGC trims)',
+                    'Email/SMS lifecycle (Klaviyo/HubSpot)',
                     'CRO: A/B testing & QA',
                     'Attribution & pixels',
-                    'AI co-pilots: QA, reporting'
+                    'AI co-pilots: QA, reporting, content drafts'
                   ].map((tool) => (
                     <div key={tool} className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-brand-primary"></span>
