@@ -54,7 +54,7 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
 const SectionTitle = ({ children, highlight, className = "" }: { children: React.ReactNode, highlight?: string, className?: string }) => (
   <motion.h2 
     variants={fadeInUp}
-    className={`text-3xl md:text-4xl font-bold text-foreground mb-4 ${className}`}
+    className={`text-4xl md:text-5xl font-bold text-foreground mb-4 ${className}`}
   >
     {children} {highlight && <span className="text-brand-secondary">{highlight}</span>}
   </motion.h2>
@@ -236,7 +236,7 @@ export function HomePageClient() {
       <nav className="py-4 bg-background/95 backdrop-blur-md border-y border-border/20 sticky top-16 z-40">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold uppercase tracking-[0.25em] text-foreground/50">
-            {['proof', 'process', 'roles', 'projects', 'testimonials'].map((item) => (
+            {['proof', 'process', 'skills', 'comparison', 'roles', 'projects', 'testimonials'].map((item) => (
               <a 
                 key={item}
                 href={`#${item}`} 
@@ -514,7 +514,179 @@ export function HomePageClient() {
       {/* Divider */}
       <div className="h-px bg-gradient-to-r from-transparent via-brand-secondary/30 to-transparent" />
 
-      {/* Roles Section */}
+      {/* Skills & Stack */}
+      <section id="skills" className="py-24 bg-gradient-to-b from-background to-card/15 relative overflow-hidden">
+        <motion.div 
+          className="absolute -left-24 top-6 w-80 h-80 bg-brand-primary/10 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.35, 0.2] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute -right-16 bottom-6 w-72 h-72 bg-brand-secondary/10 rounded-full blur-3xl"
+          animate={{ scale: [1.05, 0.94, 1.05], opacity: [0.18, 0.3, 0.18] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="max-w-6xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            <div className="mb-12 text-center">
+              <SectionLabel>Skill stack</SectionLabel>
+              <SectionTitle highlight="ready">AI</SectionTitle>
+              <motion.p variants={fadeInUp} className="text-lg text-foreground/60 max-w-3xl mx-auto">
+                The soft skills employers want, the technical stack they demand, and proof I'm AI-ready while many hires aren't.
+              </motion.p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-4">Sought-after soft skills</p>
+                <div className="grid grid-cols-2 gap-3 text-sm text-foreground/80">
+                  {[
+                    'Executive-ready comms',
+                    'Calm under pressure',
+                    'Stakeholder alignment',
+                    'Documentation-first',
+                    'Cross-timezone/async',
+                    'Systems thinking',
+                    'Prioritisation & focus',
+                    'Test-and-learn mindset'
+                  ].map((skill) => (
+                    <div key={skill} className="flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-brand-secondary"></span>
+                      <span>{skill}</span>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+
+              <Card>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary mb-4">Technical stack & tools</p>
+                <div className="grid grid-cols-2 gap-3 text-sm text-foreground/80">
+                  {[
+                    'Make / Zapier (automation)',
+                    'HubSpot / Klaviyo (CRM/ESP)',
+                    'GA4 / Looker Studio (analytics)',
+                    'Amplitude / Hotjar (behavior)',
+                    'Meta / LinkedIn / Google Ads',
+                    'Webflow / WordPress (web)',
+                    'Figma (UX/UI)',
+                    'Airtable / Notion (ops)'
+                  ].map((tool) => (
+                    <div key={tool} className="flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-brand-primary"></span>
+                      <span>{tool}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 rounded-xl border border-brand-secondary/30 bg-brand-secondary/5 px-4 py-3 text-sm text-foreground/80">
+                  <span className="font-semibold text-brand-secondary">AI-ready</span> — prompt chains, AI QA helpers, and AI-assisted reporting baked into workflows. No brittle, manual-only stacks.
+                </div>
+              </Card>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Comparison Table */}
+      <section id="comparison" className="py-24 bg-background relative overflow-hidden">
+        <motion.div 
+          className="absolute -left-16 top-0 w-72 h-72 bg-brand-primary/10 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.18, 0.32, 0.18] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute -right-20 bottom-4 w-80 h-80 bg-brand-secondary/10 rounded-full blur-3xl"
+          animate={{ scale: [1.08, 0.95, 1.08], opacity: [0.18, 0.3, 0.18] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="max-w-6xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            <div className="text-center mb-12">
+              <SectionLabel>Why I'm the no-brainer</SectionLabel>
+              <SectionTitle highlight="everyone else">
+                Me vs.
+              </SectionTitle>
+              <motion.p variants={fadeInUp} className="text-lg text-foreground/60 max-w-3xl mx-auto">
+                Clear, AI-ready, documented operations vs typical marketers who ship isolated campaigns.
+              </motion.p>
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-border/40 bg-card/80 backdrop-blur">
+              <div className="hidden md:grid grid-cols-[200px,1fr,1fr] bg-card/70 border-b border-border/30 text-xs font-semibold uppercase tracking-[0.3em] text-foreground/60">
+                <div className="p-4"></div>
+                <div className="p-4 text-brand-primary">Jack (AI-ready)</div>
+                <div className="p-4">Typical hire</div>
+              </div>
+              {[
+                {
+                  label: 'System Design',
+                  me: 'Maps full funnel, automates handoffs, documents so ops can repeat.',
+                  them: 'Builds campaigns in isolation, hands off messy execution.',
+                },
+                {
+                  label: 'AI Readiness',
+                  me: 'Uses AI for QA, reporting, and ops co-pilots; workflows designed for AI loops.',
+                  them: 'Manual processes, brittle handoffs, minimal AI leverage.',
+                },
+                {
+                  label: 'Speed & Focus',
+                  me: 'First 48h audit + priorities + comms plan.',
+                  them: 'Needs long ramp time and unclear priorities.',
+                },
+                {
+                  label: 'Communication',
+                  me: 'Exec-ready updates, Looms, and async notes; no guessing.',
+                  them: 'Updates are ad-hoc; stakeholders guess progress.',
+                },
+                {
+                  label: 'Documentation',
+                  me: 'Playbooks, QA plans, and ownership docs baked in.',
+                  them: 'Little to no documentation; knowledge in heads.',
+                },
+                {
+                  label: 'Outcomes',
+                  me: '15+ hrs/week saved; 93 attendees vs 50 target; 71 weekly signups record.',
+                  them: 'Talks channel metrics; light on business outcomes.',
+                },
+                {
+                  label: 'Tools & Stack',
+                  me: 'Make/Zapier, HubSpot/Klaviyo, GA4/Looker, Amplitude/Hotjar, Webflow, Ads, Figma.',
+                  them: 'Needs specialists to execute; waits on others.',
+                },
+              ].map((row, index) => (
+                <div
+                  key={row.label}
+                  className={`grid grid-cols-1 md:grid-cols-[200px,1fr,1fr] border-t border-border/30 ${index % 2 === 0 ? 'bg-card/60' : 'bg-background/70'}`}
+                >
+                  <div className="p-4 text-sm font-semibold text-foreground uppercase tracking-[0.2em]">
+                    {row.label}
+                  </div>
+                  <div className="p-4 border-t md:border-t-0 md:border-l border-brand-primary/40 text-sm text-foreground/90 bg-gradient-to-br from-brand-primary/10 to-transparent rounded-xl shadow-sm">
+                    <span className="text-brand-primary font-bold mr-2">✓</span>
+                    {row.me}
+                  </div>
+                  <div className="p-4 border-t md:border-t-0 md:border-l border-border/30 text-sm text-foreground/70">
+                    <span className="text-foreground/50 font-bold mr-2">—</span>
+                    {row.them}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <section id="roles" className="py-24 bg-background relative overflow-hidden">
         <motion.div 
           className="absolute -right-10 top-16 w-72 h-72 bg-brand-secondary/10 rounded-full blur-3xl"
