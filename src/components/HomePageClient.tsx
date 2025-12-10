@@ -54,9 +54,15 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
 const SectionTitle = ({ children, highlight, className = "" }: { children: React.ReactNode, highlight?: string, className?: string }) => (
   <motion.h2 
     variants={fadeInUp}
-    className={`text-4xl md:text-5xl font-bold text-foreground mb-4 ${className}`}
+    className={`relative inline-block text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight ${className}`}
   >
-    {children} {highlight && <span className="text-brand-secondary">{highlight}</span>}
+    <span className="relative z-10">
+      {children} {highlight && <span className="text-brand-secondary">{highlight}</span>}
+    </span>
+    <span
+      aria-hidden
+      className="absolute inset-x-0 bottom-1 h-3 -skew-y-2 bg-gradient-to-r from-brand-primary/30 to-brand-secondary/30 rounded-sm blur-[1px]"
+    />
   </motion.h2>
 )
 
@@ -167,7 +173,7 @@ export function HomePageClient() {
             
             <motion.p 
               variants={fadeInUp}
-              className="text-lg text-foreground/70 max-w-3xl mb-12"
+              className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed max-w-3xl mb-12"
             >
               I've got ADHD. My brain spots patterns others miss and hyperfocuses until the problem's solved. 
               That's why I built an automation that went from 800 operations to 2—or hit 93 attendees when the target was 50.
@@ -537,7 +543,7 @@ export function HomePageClient() {
             <div className="mb-12 text-center">
               <SectionLabel>Skill stack</SectionLabel>
               <SectionTitle highlight="ready">AI</SectionTitle>
-              <motion.p variants={fadeInUp} className="text-lg text-foreground/60 max-w-3xl mx-auto">
+              <motion.p variants={fadeInUp} className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed max-w-3xl mx-auto">
                 The soft skills employers want, the technical stack they demand—exactly what I use in the case studies below and what's on my CV. AI-ready while many hires aren't.
               </motion.p>
             </div>
@@ -631,7 +637,7 @@ export function HomePageClient() {
               <SectionTitle highlight="everyone else">
                 Me vs.
               </SectionTitle>
-              <motion.p variants={fadeInUp} className="text-lg text-foreground/60 max-w-3xl mx-auto">
+              <motion.p variants={fadeInUp} className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed max-w-3xl mx-auto">
                 Clear, AI-ready, documented operations vs typical marketers who ship isolated campaigns.
               </motion.p>
             </div>
@@ -725,7 +731,7 @@ export function HomePageClient() {
               <SectionTitle highlight="fit best.">
                 Different hats, here are the ones that
               </SectionTitle>
-              <motion.p variants={fadeInUp} className="text-lg text-foreground/60">
+              <motion.p variants={fadeInUp} className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed">
                 Full-time, contract, or fractional. I slot in fast and ramp up faster.
               </motion.p>
             </div>
@@ -843,7 +849,7 @@ export function HomePageClient() {
               <SectionTitle highlight="the receipts.">
                 Don't take my word for it—read
               </SectionTitle>
-              <motion.p variants={fadeInUp} className="text-lg text-foreground/60">
+              <motion.p variants={fadeInUp} className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed">
                 Each project has the brief, process, and actual results.
               </motion.p>
             </div>
