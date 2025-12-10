@@ -538,7 +538,7 @@ export function HomePageClient() {
               <SectionLabel>Skill stack</SectionLabel>
               <SectionTitle highlight="ready">AI</SectionTitle>
               <motion.p variants={fadeInUp} className="text-lg text-foreground/60 max-w-3xl mx-auto">
-                The soft skills employers want, the technical stack they demand, and proof I'm AI-ready while many hires aren't.
+                The soft skills employers want, the technical stack they demand—exactly what I use in the case studies below and what's on my CV. AI-ready while many hires aren't.
               </motion.p>
             </div>
 
@@ -562,6 +562,9 @@ export function HomePageClient() {
                     </div>
                   ))}
                 </div>
+                <p className="text-xs text-foreground/60 mt-4">
+                  These are the same soft skills documented in my CV and demonstrated in the case studies (crisis handling, cross-team comms, async leadership).
+                </p>
               </Card>
 
               <Card>
@@ -586,6 +589,9 @@ export function HomePageClient() {
                 <div className="mt-4 rounded-xl border border-brand-secondary/30 bg-brand-secondary/5 px-4 py-3 text-sm text-foreground/80">
                   <span className="font-semibold text-brand-secondary">AI-ready</span> — prompt chains, AI QA helpers, and AI-assisted reporting baked into workflows. No brittle, manual-only stacks.
                 </div>
+                <p className="text-xs text-foreground/60 mt-3">
+                  Tools and workflows match what's in my CV and the live case studies—automation, analytics, ads, UX, and ops glue a modern digital marketer needs.
+                </p>
               </Card>
             </div>
           </motion.div>
