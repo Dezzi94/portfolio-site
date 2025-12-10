@@ -4,7 +4,12 @@ import { motion } from 'framer-motion'
 import { Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { useState } from 'react'
 
-export function ContactForm() {
+type ContactFormProps = {
+  title?: string
+  subtitle?: string
+}
+
+export function ContactForm({ title, subtitle }: ContactFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isError, setIsError] = useState(false)
 
@@ -77,6 +82,20 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       className="space-y-6"
     >
+      {(title || subtitle) && (
+        <div className="space-y-2 text-center">
+          {title && (
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+              {title}
+            </h3>
+          )}
+          {subtitle && (
+            <p className="text-foreground/70 text-base md:text-lg max-w-2xl mx-auto">
+              {subtitle}
+            </p>
+          )}
+        </div>
+      )}
       {/* Netlify form detection */}
       <input type="hidden" name="form-name" value="contact" />
       
