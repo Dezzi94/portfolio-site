@@ -1,334 +1,185 @@
 'use client'
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Send, CheckCircle, AlertCircle, X } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { useState } from 'react'
 
-interface ContactFormProps {
-  variant?: 'inline' | 'floating' | 'modal'
-  title?: string
-  subtitle?: string
-  onClose?: () => void
-  isOpen?: boolean
-}
-
-interface FormData {
-  name: string
-  email: string
-  company: string
-  budget: string
-  message: string
-}
-
-interface FormErrors {
-  name?: string
-  email?: string
-  message?: string
-}
-
-export function ContactForm({
-  variant = 'inline',
-  title = "Let's Talk Growth",
-  subtitle = "Ready to build smarter systems? Tell me about your growth challenges.",
-  onClose,
-  isOpen = true
-}: ContactFormProps) {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    company: '',
-    budget: '',
-    message: ''
-  })
-  
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
+export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isError, setIsError] = useState(false)
 
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {}
-    
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required'
-    }
-    
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email'
-    }
-    
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required'
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message should be at least 10 characters'
-    }
-    
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
-    if (!validateForm()) {
-      return
-    }
-    
-    setIsSubmitting(true)
-    
-    // Simulate API call
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      console.log('Form submitted:', formData)
-      setIsSubmitted(true)
-      
-      // Reset form after success
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          budget: '',
-          message: ''
-        })
-        setIsSubmitted(false)
-        if (onClose) onClose()
-      }, 3000)
-      
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      })
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        setIsError(false)
+        form.reset()
+      } else {
+        setIsError(true)
+      }
     } catch (error) {
-      console.error('Form submission error:', error)
-    } finally {
-      setIsSubmitting(false)
+      setIsError(true)
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-    
-    // Clear error when user starts typing
-    if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }))
-    }
+  if (isSubmitted) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 rounded-2xl p-12 text-center border border-brand-primary/30"
+      >
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+        >
+          <CheckCircle className="h-16 w-16 text-brand-secondary mx-auto mb-6" />
+        </motion.div>
+        <h3 className="text-2xl font-bold text-foreground mb-3">
+          Thanks for reaching out!
+        </h3>
+        <p className="text-foreground/70 mb-6">
+          I'll get back to you within 24 hours.
+        </p>
+        <button
+          onClick={() => setIsSubmitted(false)}
+          className="px-6 py-2 text-sm font-semibold text-brand-primary hover:text-brand-secondary transition-colors"
+        >
+          Send another message
+        </button>
+      </motion.div>
+    )
   }
 
-  const formContent = (
-    <div className="w-full">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
-          {variant === 'modal' && onClose && (
-            <button
-              onClick={onClose}
-              className="p-2 rounded-lg hover:bg-foreground/10 transition-colors"
-              aria-label="Close"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          )}
+  return (
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      onSubmit={handleSubmit}
+      className="space-y-6"
+    >
+      {/* Netlify form detection */}
+      <input type="hidden" name="form-name" value="contact" />
+      
+      {/* Honeypot field for spam protection */}
+      <p className="hidden">
+        <label>
+          Don't fill this out if you're human: <input name="bot-field" />
+        </label>
+      </p>
+
+      {isError && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30 rounded-xl p-4 flex items-center gap-3"
+        >
+          <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
+          <p className="text-sm text-red-600 dark:text-red-400">
+            Something went wrong. Please try again or email me directly at{' '}
+            <a href="mailto:jack@desmonddigital.com" className="underline font-semibold">
+              jack@desmonddigital.com
+            </a>
+          </p>
+        </motion.div>
+      )}
+
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* Name Field */}
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+            Name <span className="text-brand-secondary">*</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            className="w-full px-4 py-3 rounded-xl border border-border bg-card/50 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-all"
+            placeholder="Your name"
+          />
         </div>
-        <p className="text-foreground/70 leading-relaxed">{subtitle}</p>
+
+        {/* Email Field */}
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+            Email <span className="text-brand-secondary">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            className="w-full px-4 py-3 rounded-xl border border-border bg-card/50 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-all"
+            placeholder="your@email.com"
+          />
+        </div>
       </div>
 
-      {isSubmitted ? (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center py-12"
-        >
-          <CheckCircle className="h-16 w-16 text-brand-secondary mx-auto mb-4" />
-          <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-          <p className="text-foreground/70">
-            Thanks for reaching out. I'll get back to you within 24 hours.
-          </p>
-        </motion.div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Name and Email Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-2">
-                Name *
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className={`w-full p-3 border rounded-lg bg-background transition-colors focus:outline-none focus:ring-2 focus:ring-brand-teal ${
-                  errors.name ? 'border-red-500' : 'border-border'
-                }`}
-                placeholder="Your name"
-              />
-              {errors.name && (
-                <div className="flex items-center gap-2 mt-1 text-red-500 text-sm">
-                  <AlertCircle className="h-4 w-4" />
-                  {errors.name}
-                </div>
-              )}
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-2">
-                Email *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className={`w-full p-3 border rounded-lg bg-background transition-colors focus:outline-none focus:ring-2 focus:ring-brand-teal ${
-                  errors.email ? 'border-red-500' : 'border-border'
-                }`}
-                placeholder="your@email.com"
-              />
-              {errors.email && (
-                <div className="flex items-center gap-2 mt-1 text-red-500 text-sm">
-                  <AlertCircle className="h-4 w-4" />
-                  {errors.email}
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Company and Budget Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="company" className="block text-sm font-medium mb-2">
-                Company
-              </label>
-              <input
-                type="text"
-                id="company"
-                name="company"
-                value={formData.company}
-                onChange={handleChange}
-                className="w-full p-3 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-brand-teal"
-                placeholder="Your company"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="budget" className="block text-sm font-medium mb-2">
-                Budget Range
-              </label>
-              <select
-                id="budget"
-                name="budget"
-                value={formData.budget}
-                onChange={handleChange}
-                className="w-full p-3 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-brand-teal"
-              >
-                <option value="">Select budget</option>
-                <option value="under-5k">Under $5K</option>
-                <option value="5k-10k">$5K - $10K</option>
-                <option value="10k-25k">$10K - $25K</option>
-                <option value="25k-plus">$25K+</option>
-                <option value="not-sure">Not sure yet</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Message */}
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-2">
-              Project Details *
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows={5}
-              className={`w-full p-3 border rounded-lg bg-background transition-colors focus:outline-none focus:ring-2 focus:ring-brand-teal ${
-                errors.message ? 'border-red-500' : 'border-border'
-              }`}
-              placeholder="Tell me about your growth challenges, current systems, and what you're looking to achieve..."
-            />
-            {errors.message && (
-              <div className="flex items-center gap-2 mt-1 text-red-500 text-sm">
-                <AlertCircle className="h-4 w-4" />
-                {errors.message}
-              </div>
-            )}
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full p-4 bg-brand-teal text-white rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-normal disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-          >
-            {isSubmitting ? (
-              <>
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Sending...
-              </>
-            ) : (
-              <>
-                Send Message
-                <Send className="h-4 w-4" />
-              </>
-            )}
-          </button>
-
-          <p className="text-center text-sm text-foreground/60">
-            I typically respond within 24 hours
-          </p>
-        </form>
-      )}
-    </div>
-  )
-
-  if (variant === 'modal') {
-    if (!isOpen) return null
-
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      >
-        <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm"
-          onClick={onClose}
+      {/* Subject Field */}
+      <div>
+        <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+          Subject <span className="text-brand-secondary">*</span>
+        </label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          required
+          className="w-full px-4 py-3 rounded-xl border border-border bg-card/50 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-all"
+          placeholder="What's this about?"
         />
-        <motion.div
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.95, opacity: 0 }}
-          className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 bg-card border border-border rounded-lg shadow-xl"
-        >
-          {formContent}
-        </motion.div>
-      </motion.div>
-    )
-  }
+      </div>
 
-  if (variant === 'floating') {
-    return (
-      <motion.div
-        initial={{ x: '100%' }}
-        animate={{ x: 0 }}
-        exit={{ x: '100%' }}
-        className="fixed right-0 top-0 h-full w-full max-w-md bg-card border-l border-border shadow-xl z-40 overflow-y-auto"
+      {/* Message Field */}
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+          Message <span className="text-brand-secondary">*</span>
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={6}
+          className="w-full px-4 py-3 rounded-xl border border-border bg-card/50 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-all resize-none"
+          placeholder="Tell me about your project, role opportunity, or what you're looking for..."
+        />
+      </div>
+
+      {/* Submit Button */}
+      <motion.button
+        type="submit"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:shadow-brand-primary/25 transition-all duration-300 flex items-center justify-center gap-2"
       >
-        <div className="p-6">
-          {formContent}
-        </div>
-      </motion.div>
-    )
-  }
+        <Send className="h-5 w-5" />
+        Send Message
+      </motion.button>
 
-  // Inline variant
-  return (
-    <div className="p-8 bg-card border border-border rounded-lg">
-      {formContent}
-    </div>
+      <p className="text-sm text-foreground/50">
+        Usually respond within 24 hours. For urgent matters, email me directly at{' '}
+        <a 
+          href="mailto:jack@desmonddigital.com" 
+          className="text-brand-primary hover:text-brand-secondary transition-colors font-semibold"
+        >
+          jack@desmonddigital.com
+        </a>
+      </p>
+    </form>
   )
-} 
+}

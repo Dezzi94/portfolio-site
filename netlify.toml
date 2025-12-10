@@ -7,9 +7,22 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  NEXT_PRIVATE_TARGET = "server"
 
+# Handle Next.js routing
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/:splat"
   status = 200
+  force = false
 
+# Image optimization
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_next/image*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
