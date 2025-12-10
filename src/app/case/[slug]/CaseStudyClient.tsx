@@ -15,7 +15,7 @@ import {
   ShieldCheck,
   Sparkles,
   Target,
-  Lightbulb,
+ 
   Rocket,
   Zap,
   TrendingUp,

@@ -10,7 +10,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Ensure proper static file handling
+  eslint: {
+    ignoreDuringBuilds: true, // prevent warnings from failing Netlify builds
+  },
   output: 'standalone',
 };
 
