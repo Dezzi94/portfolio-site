@@ -432,7 +432,17 @@ export function HomePageClient() {
             </div>
             
             {/* Timeline */}
-            <motion.div variants={staggerContainer} className="space-y-8">
+            <motion.div variants={staggerContainer} className="relative space-y-8">
+              <motion.div
+                aria-hidden
+                className="hidden md:block absolute left-1/2 -translate-x-1/2 top-6 bottom-6 w-[2px]"
+                style={{
+                  backgroundImage: "repeating-linear-gradient(180deg, rgba(168,85,247,0.8) 0, rgba(168,85,247,0.8) 8px, transparent 8px, transparent 16px)",
+                  filter: "drop-shadow(0 0 6px rgba(168,85,247,0.25))",
+                }}
+                animate={{ backgroundPositionY: [0, 16] }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+              />
               {[
                 { 
                   time: "First 48 hours", 
