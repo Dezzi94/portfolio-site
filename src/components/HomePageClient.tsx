@@ -30,6 +30,29 @@ const scaleIn = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } }
 }
 
+
+// Reusable animated background mesh
+const SectionMesh = ({ className = "" }: { className?: string }) => (
+  <motion.div
+    aria-hidden
+    className={`pointer-events-none absolute inset-0 ${className}`}
+    animate={{
+      opacity: [0.08, 0.14, 0.1],
+      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+    }}
+    transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+    style={{
+      backgroundImage: `
+        radial-gradient(circle at 20% 20%, rgba(192,132,252,0.18), transparent 32%),
+        radial-gradient(circle at 80% 30%, rgba(168,85,247,0.16), transparent 30%),
+        radial-gradient(circle at 40% 80%, rgba(94,234,212,0.10), transparent 28%),
+        radial-gradient(circle at 70% 70%, rgba(255,255,255,0.05), transparent 26%)
+      `,
+      backgroundSize: "140% 140%",
+    }}
+  />
+)
+
 // Consistent card component
 const Card = ({ children, className = "", hover = true }: { children: React.ReactNode, className?: string, hover?: boolean }) => (
   <motion.div 
@@ -135,6 +158,7 @@ export function HomePageClient() {
       
       {/* The Honest Pitch */}
       <section className="py-24 bg-gradient-to-br from-brand-primary/10 via-background to-brand-secondary/5 relative overflow-hidden">
+        <SectionMesh className="mix-blend-screen opacity-80" />
         {/* Animated background orbs */}
         <motion.div 
           className="absolute top-20 left-10 w-72 h-72 bg-brand-primary/10 rounded-full blur-3xl"
@@ -257,6 +281,7 @@ export function HomePageClient() {
 
       {/* Proof Section */}
       <section id="proof" className="py-24 bg-background relative overflow-hidden">
+        <SectionMesh className="mix-blend-screen opacity-80" />
         <motion.div 
           className="absolute -left-24 top-10 w-80 h-80 bg-brand-primary/10 rounded-full blur-3xl"
           animate={{ scale: [1, 1.1, 1], opacity: [0.25, 0.4, 0.25] }}
@@ -372,6 +397,7 @@ export function HomePageClient() {
 
       {/* How I Work */}
       <section id="process" className="py-24 bg-gradient-to-b from-background to-card/20 relative overflow-hidden">
+        <SectionMesh className="mix-blend-screen opacity-80" />
         {/* Subtle grid pattern */}
         <motion.div 
           className="absolute -right-16 top-12 w-80 h-80 bg-brand-secondary/10 rounded-full blur-3xl"
@@ -486,6 +512,7 @@ export function HomePageClient() {
 
       {/* Skills & Stack */}
       <section id="skills" className="py-24 bg-gradient-to-b from-background to-card/15 relative overflow-hidden">
+        <SectionMesh className="mix-blend-screen opacity-80" />
         <motion.div 
           className="absolute -left-24 top-6 w-80 h-80 bg-brand-primary/10 rounded-full blur-3xl"
           animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.35, 0.2] }}
@@ -550,6 +577,7 @@ export function HomePageClient() {
 
       {/* Comparison Table */}
       <section id="comparison" className="py-24 bg-background relative overflow-hidden">
+        <SectionMesh className="mix-blend-screen opacity-80" />
         <motion.div 
           className="absolute -left-16 top-0 w-72 h-72 bg-brand-primary/10 rounded-full blur-3xl"
           animate={{ scale: [1, 1.1, 1], opacity: [0.18, 0.32, 0.18] }}
@@ -647,6 +675,7 @@ export function HomePageClient() {
       </section>
 
       <section id="roles" className="py-24 bg-background relative overflow-hidden">
+        <SectionMesh className="mix-blend-screen opacity-80" />
         <motion.div 
           className="absolute -right-10 top-16 w-72 h-72 bg-brand-secondary/10 rounded-full blur-3xl"
           animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.35, 0.2] }}
@@ -765,6 +794,7 @@ export function HomePageClient() {
 
       {/* Projects Section */}
       <section id="projects" className="py-24 bg-gradient-to-b from-card/10 to-background relative overflow-hidden">
+        <SectionMesh className="mix-blend-screen opacity-80" />
         <motion.div 
           className="absolute -left-24 top-0 w-80 h-80 bg-brand-primary/12 rounded-full blur-3xl"
           animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.32, 0.2] }}
@@ -889,6 +919,7 @@ export function HomePageClient() {
 
       {/* Final CTA */}
       <section className="py-24 bg-gradient-to-br from-brand-primary/15 via-background to-brand-secondary/15 relative overflow-hidden">
+        <SectionMesh className="mix-blend-screen opacity-80" />
         {/* Animated gradient orbs */}
         <motion.div 
           className="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/20 rounded-full blur-3xl"
