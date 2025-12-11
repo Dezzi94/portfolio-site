@@ -553,10 +553,10 @@ export function HomePageClient() {
                     'Social: IG / TikTok / YouTube / FB / X (publishing & analytics)',
                     'Webflow / WordPress / Squarespace',
                     'Figma / Canva (creative & UGC trims)',
+                    'Discord (community ops & engagement)',
                     'Email/SMS lifecycle (Klaviyo/HubSpot)',
                     'CRO: A/B testing & QA',
-                    'Attribution & pixels',
-                    'AI co-pilots: QA, reporting, content drafts'
+                    'ChatGPT & AI co-pilots: QA, reporting, content drafts'
                   ].map((tool) => (
                     <div key={tool} className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-brand-primary"></span>
@@ -565,7 +565,7 @@ export function HomePageClient() {
                   ))}
                 </div>
                 <div className="mt-4 rounded-xl border border-brand-secondary/30 bg-brand-secondary/5 px-4 py-3 text-sm text-foreground/80">
-                  <span className="font-semibold text-brand-secondary">AI-ready</span> — prompt chains, AI QA helpers, and AI-assisted reporting baked into workflows. No brittle, manual-only stacks.
+                  <span className="font-semibold text-brand-secondary">How I use AI</span> — I bake ChatGPT and co-pilots into QA, reporting, and content drafts so nothing ships brittle or manual.
                 </div>
                 <p className="text-xs text-foreground/60 mt-3">
                   Tools and workflows match what's in my CV and the live case studies—automation, analytics, ads, UX, and ops glue a modern digital marketer needs.
