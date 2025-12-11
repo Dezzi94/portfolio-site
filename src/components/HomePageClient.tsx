@@ -541,10 +541,12 @@ export function HomePageClient() {
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
           >
-            <div className="mb-12 text-center">
+            <div className="mb-12 text-center flex flex-col items-center gap-4">
               <SectionLabel>AI that works</SectionLabel>
-              <SectionTitle highlight="hard">I bring the skills, they bring excuses</SectionTitle>
-              <motion.p variants={fadeInUp} className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed max-w-3xl mx-auto">
+              <div className="max-w-4xl w-full px-2">
+                <SectionTitle highlight="hard">I bring the skills, they bring excuses</SectionTitle>
+              </div>
+              <motion.p variants={fadeInUp} className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed max-w-4xl mx-auto">
                 I use AI to ship faster and smarter: ChatGPT prompt chains for QA and reporting, co-pilots for content drafts, and automation guardrails so nothing breaks. Non-AI marketers move slow and stay manual—I don’t.
               </motion.p>
             </div>
