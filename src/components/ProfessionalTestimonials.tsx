@@ -201,14 +201,10 @@ export function ProfessionalTestimonials() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            What people say about me?
+            My Testimonials — The <span className="gradient-text">Proof</span>
           </h2>
-          <h3 className="text-3xl lg:text-4xl font-bold mb-8">
-            My Testimonials - The <span className="gradient-text">Proof</span>
-          </h3>
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-            Real feedback from real bosses and colleagues who've experienced my strategic thinking, 
-            systems-first approach, and neurodivergent edge in action.
+            Real feedback from bosses and colleagues who’ve seen my strategic thinking, systems-first approach, and calm under pressure.
           </p>
         </motion.div>
 
