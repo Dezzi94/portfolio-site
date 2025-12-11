@@ -44,7 +44,7 @@ const Card = ({ children, className = "", hover = true }: { children: React.Reac
 const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   <motion.p 
     variants={fadeIn}
-    className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-primary mb-4"
+    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm md:text-base font-semibold uppercase tracking-[0.2em] text-brand-secondary/90 bg-brand-primary/5 border border-brand-primary/20 shadow-sm mb-4"
   >
     {children}
   </motion.p>
