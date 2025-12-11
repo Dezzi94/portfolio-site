@@ -606,17 +606,19 @@ export function HomePageClient() {
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
           >
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 flex flex-col items-center gap-3">
               <SectionLabel>Why I'm the no-brainer</SectionLabel>
-              <SectionTitle highlight="everyone else">
-                Me vs.
-              </SectionTitle>
-              <motion.p variants={fadeInUp} className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed max-w-3xl mx-auto">
-                Clear, AI-ready, documented operations vs typical marketers who ship isolated campaigns.
-              </motion.p>
-              <motion.p variants={fadeInUp} className="text-base md:text-lg text-foreground/65 max-w-3xl mx-auto mt-4">
-                Soft skills: exec comms, problem solving, growth mindset, async leadership. Tech: Make/Zapier, HubSpot/GoHighLevel/Klaviyo, GA4, Hotjar, Ads (Meta/LinkedIn/Google), social publishing, Webflow/WordPress/Squarespace, Figma/Canva, Discord, email/SMS lifecycle, CRO A/B & QA.
-              </motion.p>
+              <div className="flex flex-col items-center gap-2">
+                <SectionTitle highlight="everyone else">
+                  Me vs.
+                </SectionTitle>
+                <motion.p variants={fadeInUp} className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed max-w-3xl">
+                  Clear, AI-ready, documented operations vs typical marketers who ship isolated campaigns.
+                </motion.p>
+                <motion.p variants={fadeInUp} className="text-base md:text-lg text-foreground/65 max-w-3xl">
+                  Soft skills: exec comms, problem solving, growth mindset, async leadership. Tech: Make/Zapier, HubSpot/GoHighLevel/Klaviyo, GA4, Hotjar, Ads (Meta/LinkedIn/Google), social publishing, Webflow/WordPress/Squarespace, Figma/Canva, Discord, email/SMS lifecycle, CRO A/B & QA.
+                </motion.p>
+              </div>
             </div>
 
             <div className="overflow-hidden rounded-3xl border border-border/40 bg-card/80 backdrop-blur">
