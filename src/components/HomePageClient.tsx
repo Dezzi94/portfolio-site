@@ -477,42 +477,6 @@ export function HomePageClient() {
               ))}
             </motion.div>
             
-            {/* Soft skills */}
-            <motion.div 
-              variants={fadeInUp}
-              className="mt-20 p-8 rounded-2xl bg-gradient-to-r from-brand-primary/10 via-card/50 to-brand-secondary/10 border border-border/30"
-            >
-              <h3 className="text-xl font-bold text-foreground mb-8 text-center">
-                The <span className="text-brand-secondary">soft stuff</span> that matters
-              </h3>
-              <motion.div 
-                variants={staggerContainer}
-                className="grid md:grid-cols-3 gap-8"
-              >
-                {[
-                  { emoji: "🧘", title: "Calm under pressure", desc: "Landing page crashed hours before a live event. Rebuilt the flow and hit 93 attendees." },
-                  { emoji: "📝", title: "Over-communicator", desc: "Every workflow and decision gets documented. Nobody's left guessing." },
-                  { emoji: "🌍", title: "Async-native", desc: "Coordinated across UK, AUS, CAN timezones. Distributed teams don't slow me down." }
-                ].map((skill, i) => (
-                  <motion.div 
-                    key={i}
-                    variants={scaleIn}
-                    whileHover={{ y: -4 }}
-                    className="text-center p-4 rounded-xl hover:bg-card/50 transition-all duration-300"
-                  >
-                    <motion.span 
-                      className="text-3xl block mb-3"
-                      whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0] }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {skill.emoji}
-                    </motion.span>
-                    <p className="font-semibold text-foreground mb-2">{skill.title}</p>
-                    <p className="text-sm text-foreground/60">{skill.desc}</p>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
