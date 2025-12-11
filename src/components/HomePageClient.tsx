@@ -505,58 +505,33 @@ export function HomePageClient() {
             variants={staggerContainer}
           >
             <div className="mb-12 text-center">
-              <SectionLabel>Skill stack</SectionLabel>
-              <SectionTitle highlight="ready">AI</SectionTitle>
+              <SectionLabel>AI that works</SectionLabel>
+              <SectionTitle highlight="hard">I bring the skills, they bring excuses</SectionTitle>
               <motion.p variants={fadeInUp} className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed max-w-3xl mx-auto">
-                The soft skills employers want, the technical stack they demand—exactly what I use in the case studies below and what's on my CV. AI-ready while many hires aren't.
+                I use AI to ship faster and smarter: ChatGPT prompt chains for QA and reporting, co-pilots for content drafts, and automation guardrails so nothing breaks. Non-AI marketers move slow and stay manual—I don’t.
               </motion.p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               <Card>
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-4">Sought-after soft skills</p>
-                <div className="grid grid-cols-2 gap-3 text-sm text-foreground/80">
-                  {[
-                    'Executive-ready comms',
-                    'Clear written storytelling',
-                    'Structured problem solving',
-                    'Growth mindset',
-                    'Experiment design & QA',
-                    'Stakeholder alignment',
-                    'Documentation-first',
-                    'Prioritisation & focus',
-                    'Systems thinking',
-                    'Trend spotting & platform updates',
-                    'Community engagement & social listening',
-                    'Organised, multi-client delivery'
-                  ].map((skill) => (
-                    <div key={skill} className="flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-brand-secondary"></span>
-                      <span>{skill}</span>
-                    </div>
-                  ))}
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-4">How I use AI</p>
+                <div className="space-y-2 text-sm text-foreground/80">
+                  <div className="flex items-start gap-2"><span className="h-2 w-2 rounded-full bg-brand-secondary mt-1"></span><span>ChatGPT chains for QA, briefs, and reporting so execs get clarity fast.</span></div>
+                  <div className="flex items-start gap-2"><span className="h-2 w-2 rounded-full bg-brand-secondary mt-1"></span><span>AI co-pilots in Make/Zapier to catch edge cases before launch.</span></div>
+                  <div className="flex items-start gap-2"><span className="h-2 w-2 rounded-full bg-brand-secondary mt-1"></span><span>Content drafts + personalization at scale without losing brand voice.</span></div>
+                  <div className="flex items-start gap-2"><span className="h-2 w-2 rounded-full bg-brand-secondary mt-1"></span><span>Faster post-mortems: AI-assisted summaries of experiments and next steps.</span></div>
+                  <div className="flex items-start gap-2"><span className="h-2 w-2 rounded-full bg-brand-secondary mt-1"></span><span>Non-AI marketers stay manual and slow; I ship with guardrails and speed.</span></div>
                 </div>
-                <p className="text-xs text-foreground/60 mt-4">
-                  These are the same soft skills documented in my CV and demonstrated in the case studies (crisis handling, cross-team comms, async leadership).
-                </p>
               </Card>
 
               <Card>
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary mb-4">Technical stack & tools</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary mb-4">AI toolkit</p>
                 <div className="grid grid-cols-2 gap-3 text-sm text-foreground/80">
                   {[
-                    'Make / Zapier (automation)',
-                    'HubSpot / GoHighLevel / Klaviyo (CRM/ESP)',
-                    'GA4 / basic SQL-friendly exports',
-                    'Hotjar (behavior)',
-                    'Meta / LinkedIn / Google Ads',
-                    'Social: IG / TikTok / YouTube / FB / X (publishing & analytics)',
-                    'Webflow / WordPress / Squarespace',
-                    'Figma / Canva (creative & UGC trims)',
-                    'Discord (community ops & engagement)',
-                    'Email/SMS lifecycle (Klaviyo/HubSpot)',
-                    'CRO: A/B testing & QA',
-                    'ChatGPT & AI co-pilots: QA, reporting, content drafts'
+                    'ChatGPT: briefs, QA, summaries',
+                    'AI co-pilots in Make/Zapier',
+                    'AI-assisted reporting decks',
+                    'AI content drafts + tone checks'
                   ].map((tool) => (
                     <div key={tool} className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-brand-primary"></span>
@@ -564,11 +539,8 @@ export function HomePageClient() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 rounded-xl border border-brand-secondary/30 bg-brand-secondary/5 px-4 py-3 text-sm text-foreground/80">
-                  <span className="font-semibold text-brand-secondary">How I use AI</span> — I bake ChatGPT and co-pilots into QA, reporting, and content drafts so nothing ships brittle or manual.
-                </div>
                 <p className="text-xs text-foreground/60 mt-3">
-                  Tools and workflows match what's in my CV and the live case studies—automation, analytics, ads, UX, and ops glue a modern digital marketer needs.
+                  Built into my workflows so I move faster than non-AI marketers while keeping quality high.
                 </p>
               </Card>
             </div>
@@ -603,6 +575,9 @@ export function HomePageClient() {
               </SectionTitle>
               <motion.p variants={fadeInUp} className="text-lg md:text-xl text-foreground/75 font-medium leading-relaxed max-w-3xl mx-auto">
                 Clear, AI-ready, documented operations vs typical marketers who ship isolated campaigns.
+              </motion.p>
+              <motion.p variants={fadeInUp} className="text-base md:text-lg text-foreground/65 max-w-3xl mx-auto mt-4">
+                Soft skills: exec comms, problem solving, growth mindset, async leadership. Tech: Make/Zapier, HubSpot/GoHighLevel/Klaviyo, GA4, Hotjar, Ads (Meta/LinkedIn/Google), social publishing, Webflow/WordPress/Squarespace, Figma/Canva, Discord, email/SMS lifecycle, CRO A/B & QA.
               </motion.p>
             </div>
 
