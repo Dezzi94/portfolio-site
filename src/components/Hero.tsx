@@ -296,13 +296,17 @@ export function Hero({ extraHeading }: HeroProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                  <span className="gradient-text block">
+                <h1 className="relative inline-block text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                  <span className="gradient-text block relative z-10">
                     Scrappy. <span className="text-brand-secondary">Systems.</span>
                   </span>
-                  <span className="text-foreground block mt-1">
+                  <span className="text-foreground block mt-1 relative z-10">
                     Shipped.
                   </span>
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-1 h-3 -skew-y-2 bg-gradient-to-r from-brand-primary/25 to-brand-secondary/25 rounded-sm blur-[1px]"
+                  />
                 </h1>
               </motion.div>
 
@@ -384,13 +388,17 @@ export function Hero({ extraHeading }: HeroProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <h1 className="text-5xl xl:text-7xl font-bold mb-6 leading-tight">
-                  <span className="gradient-text block">
+                <h1 className="relative inline-block text-5xl xl:text-7xl font-bold mb-6 leading-tight">
+                  <span className="gradient-text block relative z-10">
                     Scrappy. <span className="text-brand-secondary">Systems.</span>
                   </span>
-                  <span className="text-foreground block mt-1">
+                  <span className="text-foreground block mt-1 relative z-10">
                     Shipped.
                   </span>
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-1 h-3 -skew-y-2 bg-gradient-to-r from-brand-primary/25 to-brand-secondary/25 rounded-sm blur-[1px]"
+                  />
                 </h1>
               </motion.div>
 
