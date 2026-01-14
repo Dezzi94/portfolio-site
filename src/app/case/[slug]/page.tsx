@@ -138,7 +138,7 @@ const caseStudies = {
       role: "Founder, WildEdge Consultancy"
     },
     tags: ['Website Optimization', 'Performance', 'UX Design', 'Automation'],
-    liveSite: 'https://wildedgeconsultancy.com'
+    liveSite: 'https://wildedgeconsulting.com'
   },
   'mammoth-hunter-club': {
     title: 'Mammoth Hunter Club',
@@ -182,8 +182,8 @@ const caseStudies = {
     challenge: 'Needed to consistently book at least 10 qualified calls per month through organic outreach while also keeping a small community engaged.',
     solution: 'Built personalised social outreach cadences that hit 11 calls in the first month, then formalised community rituals (posts, feedback loops, events) once promoted to Community Manager.',
     results: {
-      metric1: { label: 'Booked Calls (Month 1 KPI 10)', value: '11' },
-      metric2: { label: 'Role Progression', value: 'Social → Community Manager (4 months)' },
+      metric1: { label: 'Booked Calls (Target: 10)', value: '11 achieved' },
+      metric2: { label: 'Role Progression', value: 'Promoted to Community Manager' },
       metric3: { label: 'Community Programs', value: 'Weekly posts & events' }
     },
     heroSummary: 'Hit the 10-call outreach KPI immediately (11 booked in Month 1) and then kept members engaged through weekly posts, matchmaking, and events as Community Manager.',
@@ -194,9 +194,9 @@ const caseStudies = {
       '/images/case-studies/mammoth-hunter-engagement.jpg'
     ],
     testimonial: {
-      text: "Jack helped us automate our entire community management process and reduced our manual work by 80%. He transformed our small group into a thriving community.",
-      author: "Alex Rivera",
-      role: "Community Manager, Mammoth Hunter Club"
+      text: "I exceeded my monthly KPI of 10 booked calls by achieving 11 in my first month, which led to a promotion from Social Media Manager to Community Manager where I built engagement systems that kept members active and connected.",
+      author: "Jack Desmond",
+      role: "Social Media & Community Manager"
     },
     tags: ['Community Building', 'Social Media', 'Automation', 'Growth'],
     liveSite: 'https://mammothhunterclub.com'
@@ -261,7 +261,7 @@ const caseStudies = {
     testimonial: {
       text: "Jack's systematic approach to our marketing campaigns delivered results beyond our expectations. His multi-project execution helped us reach more veterans and career transitioners than ever before.",
       author: "Tom Moore",
-      role: "CEO & Founder, WithYouWithMe"
+      role: "Co-Founder, WithYouWithMe"
     },
     tags: ['Event Marketing', 'Paid Advertising', 'Funnel Optimization', 'Multi-channel Campaigns'],
     liveSite: 'https://withyouwithme.com'

@@ -627,8 +627,9 @@ const DefaultCaseStudySection = ({ caseStudy }: { caseStudy: CaseStudy }) => {
 
   const splitText = (text?: string) => {
     if (!text) return []
+    // Split on newlines, bullets, or en-dashes (not hyphens, to preserve compound words like "lead-gen")
     const baseSegments = text
-      .split(/[\n\r•–\-]/)
+      .split(/[\n\r•–]/)
       .flatMap((segment) => segment.split(/(?<=\.)\s+/))
     return baseSegments
       .map((item) => item.replace(/^[•\-–]\s*/, '').trim())

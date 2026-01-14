@@ -30,6 +30,49 @@ const scaleIn = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } }
 }
 
+// Enhanced timeline animations
+const timelineCardLeft = {
+  hidden: { opacity: 0, x: -60, rotateY: -8 },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    rotateY: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }
+  }
+}
+
+const timelineCardRight = {
+  hidden: { opacity: 0, x: 60, rotateY: 8 },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    rotateY: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }
+  }
+}
+
+const timelineDot = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: { 
+    scale: 1, 
+    opacity: 1,
+    transition: { 
+      type: "spring",
+      stiffness: 300,
+      damping: 15,
+      delay: 0.2
+    }
+  }
+}
+
+const timelineStagger = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.3, delayChildren: 0.2 }
+  }
+}
+
 
 // Reusable animated background mesh
 const SectionMesh = ({ className = "" }: { className?: string }) => (
@@ -432,82 +475,155 @@ export function HomePageClient() {
             </div>
             
             {/* Timeline */}
-            <motion.div variants={staggerContainer} className="relative space-y-8">
-              <motion.div
-                aria-hidden
-                className="hidden md:block absolute left-1/2 -translate-x-1/2 top-6 bottom-6 w-[2px]"
-                style={{
-                  backgroundImage: "repeating-linear-gradient(180deg, rgba(168,85,247,0.8) 0, rgba(168,85,247,0.8) 8px, transparent 8px, transparent 16px)",
-                  filter: "drop-shadow(0 0 6px rgba(168,85,247,0.25))",
-                }}
-                animate={{ backgroundPositionY: [0, 16] }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
-              />
+            <motion.div variants={timelineStagger} className="relative space-y-12 md:space-y-16">
+              {/* Animated vertical line */}
+              <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[3px] overflow-hidden">
+                {/* Base glow line */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-brand-primary/20 via-brand-secondary/30 to-brand-primary/20"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                />
+                {/* Animated progress line */}
+                <motion.div
+                  className="absolute inset-x-0 top-0 bg-gradient-to-b from-brand-primary via-brand-secondary to-brand-primary"
+                  initial={{ height: "0%" }}
+                  whileInView={{ height: "100%" }}
+                  viewport={{ once: true, margin: "-20%" }}
+                  transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
+                  style={{ 
+                    boxShadow: "0 0 20px rgba(168,85,247,0.5), 0 0 40px rgba(168,85,247,0.3)",
+                  }}
+                />
+                {/* Traveling light particle */}
+                <motion.div
+                  className="absolute left-0 right-0 h-8 bg-gradient-to-b from-transparent via-white/80 to-transparent"
+                  animate={{ 
+                    top: ["-10%", "110%"],
+                  }}
+                  transition={{ 
+                    duration: 2.5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    repeatDelay: 1
+                  }}
+                  style={{ filter: "blur(2px)" }}
+                />
+              </div>
+
               {[
                 { 
                   time: "First 48 hours", 
                   title: "Audit & Map", 
                   color: "primary",
+                  icon: "🔍",
                   desc: "I dig into your stack, funnels, and workflows—mapping the entire customer journey and documenting friction points. You get a shared doc with findings and a prioritised hit list."
                 },
                 { 
                   time: "Week one", 
                   title: "Priorities & Plan", 
                   color: "secondary",
+                  icon: "🎯",
                   desc: "We agree on what moves the needle. I ship a comms plan so you know exactly when I'll update you and how to give feedback. No ghosting."
                 },
                 { 
                   time: "Ongoing", 
                   title: "Ship & Iterate", 
                   color: "primary",
+                  icon: "🚀",
                   desc: "I own the backlog. Every automation or campaign gets a Loom brief so anyone can pick it up. Results reported in plain English tied to agreed KPIs."
                 }
               ].map((phase, i) => (
                 <motion.div 
                   key={i}
-                  variants={fadeInUp}
-                  className={`flex flex-col md:flex-row gap-6 items-start ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+                  variants={i % 2 === 0 ? timelineCardLeft : timelineCardRight}
+                  className={`flex flex-col md:flex-row gap-6 md:gap-8 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
                 >
-                  <div className={`md:w-1/4 ${i % 2 === 1 ? 'md:text-left' : 'md:text-right'}`}>
+                  {/* Time & Title */}
+                  <div className={`md:w-[30%] text-center ${i % 2 === 1 ? 'md:text-left' : 'md:text-right'}`}>
                     <motion.div 
-                      whileHover={{ scale: 1.05 }}
-                      className={`inline-block px-4 py-2 rounded-full mb-2 ${
+                      whileHover={{ scale: 1.08, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-3 cursor-default ${
                         phase.color === 'primary' 
-                          ? 'bg-brand-primary/15 text-brand-primary' 
-                          : 'bg-brand-secondary/15 text-brand-secondary'
+                          ? 'bg-gradient-to-r from-brand-primary/20 to-brand-primary/10 text-brand-primary border border-brand-primary/30' 
+                          : 'bg-gradient-to-r from-brand-secondary/20 to-brand-secondary/10 text-brand-secondary border border-brand-secondary/30'
                       }`}
+                      style={{
+                        boxShadow: phase.color === 'primary' 
+                          ? '0 4px 20px rgba(168,85,247,0.15)' 
+                          : '0 4px 20px rgba(94,234,212,0.15)'
+                      }}
                     >
-                      <span className="text-sm font-bold">{phase.time}</span>
+                      <span className="text-lg">{phase.icon}</span>
+                      <span className="text-sm font-bold tracking-wide">{phase.time}</span>
                     </motion.div>
-                    <h3 className="text-xl font-bold text-foreground">{phase.title}</h3>
+                    <h3 className="text-2xl md:text-2xl font-bold text-foreground">{phase.title}</h3>
                   </div>
                   
-                  <div className="hidden md:flex flex-col items-center">
-                    <motion.div 
-                      className={`w-4 h-4 rounded-full ${
-                        phase.color === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary'
-                      }`}
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 }}
-                    />
-                    {i < 2 && (
+                  {/* Center dot with glow */}
+                  <div className="hidden md:flex flex-col items-center justify-center relative z-10">
+                    <motion.div
+                      variants={timelineDot}
+                      className="relative"
+                    >
+                      {/* Outer glow ring */}
                       <motion.div 
-                        className="w-0.5 h-20 bg-gradient-to-b from-brand-primary/50 to-brand-secondary/50"
-                        initial={{ scaleY: 0 }}
-                        whileInView={{ scaleY: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.4, duration: 0.5 }}
+                        className={`absolute -inset-3 rounded-full ${
+                          phase.color === 'primary' ? 'bg-brand-primary/30' : 'bg-brand-secondary/30'
+                        }`}
+                        animate={{ 
+                          scale: [1, 1.4, 1],
+                          opacity: [0.5, 0.2, 0.5]
+                        }}
+                        transition={{ 
+                          duration: 2, 
+                          repeat: Infinity, 
+                          ease: "easeInOut",
+                          delay: i * 0.3
+                        }}
+                        style={{ filter: "blur(6px)" }}
                       />
-                    )}
+                      {/* Main dot */}
+                      <motion.div 
+                        className={`relative w-5 h-5 rounded-full ${
+                          phase.color === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary'
+                        }`}
+                        whileHover={{ scale: 1.3 }}
+                        style={{
+                          boxShadow: phase.color === 'primary' 
+                            ? '0 0 20px rgba(168,85,247,0.6), 0 0 40px rgba(168,85,247,0.3)' 
+                            : '0 0 20px rgba(94,234,212,0.6), 0 0 40px rgba(94,234,212,0.3)'
+                        }}
+                      />
+                      {/* Inner shine */}
+                      <div className="absolute inset-1 rounded-full bg-white/30" />
+                    </motion.div>
                   </div>
                   
+                  {/* Content card */}
                   <motion.div 
-                    whileHover={{ y: -4 }}
-                    className="md:w-3/4 bg-card/80 backdrop-blur-sm rounded-2xl p-6 border border-border/40 hover:border-brand-primary/30 transition-all duration-300"
+                    whileHover={{ 
+                      y: -6, 
+                      scale: 1.02,
+                      transition: { duration: 0.3 }
+                    }}
+                    className={`md:w-[55%] relative group`}
                   >
-                    <p className="text-foreground/80 leading-relaxed">{phase.desc}</p>
+                    {/* Card glow effect on hover */}
+                    <div className={`absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl ${
+                      phase.color === 'primary' ? 'bg-brand-primary/20' : 'bg-brand-secondary/20'
+                    }`} />
+                    
+                    <div className={`relative bg-card/90 backdrop-blur-md rounded-2xl p-6 md:p-7 border-2 transition-all duration-500 ${
+                      phase.color === 'primary' 
+                        ? 'border-brand-primary/20 hover:border-brand-primary/50 group-hover:shadow-[0_8px_40px_rgba(168,85,247,0.15)]' 
+                        : 'border-brand-secondary/20 hover:border-brand-secondary/50 group-hover:shadow-[0_8px_40px_rgba(94,234,212,0.15)]'
+                    }`}>
+                      <p className="text-foreground/90 leading-relaxed text-base md:text-lg font-medium">{phase.desc}</p>
+                    </div>
                   </motion.div>
                 </motion.div>
               ))}
